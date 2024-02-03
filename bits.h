@@ -67,6 +67,11 @@ typedef struct
     bits_group_t *_name##_groups[] = {BITS_FOREACH(BITS_AMPERSAND, __VA_ARGS__) NULL}; \
     bits_value_t _name = {.desc = #_name, .groups = _name##_groups}
 
+#define BITS_BIT(_g, _n, _b) \
+    BITS_SINGLE(_g##_##_n, _b, DESC(1, #_n), DESC(0, "."))
+    
 #define DEFINE_BITS(b) extern bits_value_t b;
+
+char *bits_describe(uint32_t value, bits_value_t *bits);
 
 #endif
